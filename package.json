@@ -22,6 +22,7 @@
   "homepage": "https://github.com/vuongvu1/react-progressive-picture#readme",
   "bugs": "https://github.com/vuongvu1/react-progressive-picture/issues",
   "type": "module",
+  "packageManager": "pnpm@10.33.2",
   "sideEffects": [
     "*.css"
   ],
