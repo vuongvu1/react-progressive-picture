@@ -17,10 +17,10 @@
   "author": "Vuong Vu",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OWNER/react-progressive-picture.git"
+    "url": "git+https://github.com/vuongvu1/react-progressive-picture.git"
   },
-  "homepage": "https://github.com/OWNER/react-progressive-picture#readme",
-  "bugs": "https://github.com/OWNER/react-progressive-picture/issues",
+  "homepage": "https://github.com/vuongvu1/react-progressive-picture#readme",
+  "bugs": "https://github.com/vuongvu1/react-progressive-picture/issues",
   "type": "module",
   "sideEffects": [
     "*.css"
