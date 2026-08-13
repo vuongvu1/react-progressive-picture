@@ -1,0 +1,126 @@
+/*
+ * react-progressive-picture
+ *
+ * Import once, anywhere in your app:  import 'react-progressive-picture/style.css'
+ *
+ * Everything tunable is a custom property, so overrides need no !important and no
+ * wrapper selectors — set them on .rpp-root, on your own class, or on an ancestor.
+ */
+
+.rpp-root {
+  --rpp-ratio: auto;
+  --rpp-ratio-desktop: auto;
+  --rpp-blur: 2rem;
+  --rpp-object-fit: cover;
+  --rpp-fade-duration: 250ms;
+  --rpp-shimmer-color: rgb(255 255 255 / 0.1);
+  --rpp-shimmer-duration: 2.5s;
+
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--rpp-ratio);
+
+  /* The low-quality placeholder, set inline as a background-image by the component. */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*
+ * Custom properties cannot be used in @media conditions, so the breakpoint is fixed here.
+ * To use a different one, leave the `ratio` prop unset and drive --rpp-ratio from your
+ * own media query instead.
+ */
+@media screen and (min-width: 768px) {
+  .rpp-root {
+    aspect-ratio: var(--rpp-ratio-desktop);
+  }
+}
+
+/* Blur layer: inherits the placeholder background so it is never fetched twice. */
+.rpp-root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(var(--rpp-blur));
+  /* Blur samples past the edges and would otherwise fade to transparent there. */
+  transform: scale(1.1);
+}
+
+/* Shimmer layer: a slow pulse while the full image is in flight. */
+.rpp-root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--rpp-shimmer-color);
+  animation: rpp-pulse var(--rpp-shimmer-duration) ease-in-out infinite;
+}
+
+.rpp-root::before,
+.rpp-root::after {
+  pointer-events: none;
+  transition: opacity var(--rpp-fade-duration) ease;
+}
+
+.rpp-picture {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.rpp-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--rpp-object-fit);
+  opacity: 0;
+  transition: opacity var(--rpp-fade-duration) ease;
+}
+
+.rpp-loaded .rpp-img {
+  opacity: 1;
+}
+
+.rpp-loaded::before,
+.rpp-loaded::after {
+  opacity: 0;
+}
+
+/* An animation on opacity outranks the declaration above, so stop it as well. */
+.rpp-loaded::after {
+  animation: none;
+}
+
+/* placeholder={false}: no background, so no blur and no shimmer either. */
+.rpp-plain::before,
+.rpp-plain::after {
+  content: none;
+}
+
+@keyframes rpp-pulse {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rpp-img,
+  .rpp-root::before,
+  .rpp-root::after {
+    transition: none;
+  }
+
+  .rpp-root::after {
+    animation: none;
+  }
+}

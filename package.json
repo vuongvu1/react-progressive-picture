@@ -1,0 +1,64 @@
+{
+  "name": "react-progressive-picture",
+  "version": "0.1.0",
+  "description": "Responsive <picture> with format negotiation and a blur-up placeholder. Pairs with vite-imagetools ?as=metadata.",
+  "keywords": [
+    "react",
+    "picture",
+    "responsive-images",
+    "lazy-loading",
+    "blur-up",
+    "lqip",
+    "avif",
+    "webp",
+    "vite-imagetools"
+  ],
+  "license": "MIT",
+  "author": "Vuong Vu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OWNER/react-progressive-picture.git"
+  },
+  "homepage": "https://github.com/OWNER/react-progressive-picture#readme",
+  "bugs": "https://github.com/OWNER/react-progressive-picture/issues",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "vite build",
+    "prepublishOnly": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/react": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "happy-dom": "^20.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^7.0.0",
+    "vite-plugin-dts": "^4.0.0",
+    "vitest": "^3.0.0"
+  }
+}
