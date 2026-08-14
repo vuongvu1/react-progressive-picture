@@ -4,10 +4,11 @@ A responsive `<picture>` for React that negotiates image formats, holds its own 
 ratio, and fades a blurred low-quality placeholder into the full image once it loads.
 One component, one stylesheet, no runtime dependencies.
 
-![A blurred 30px placeholder holding a 16/9 box, fading into the full image once it loads](https://raw.githubusercontent.com/vuongvu1/react-progressive-picture/main/docs/demo.gif)
+![A blurred 30px placeholder holding a 3/2 box, fading into the full photo of a bird on a blossoming branch once it loads](https://raw.githubusercontent.com/vuongvu1/react-progressive-picture/main/docs/demo.gif)
 
-*The box never reflows: the aspect ratio is held from first paint, and the 214-byte
-placeholder covers the gap. Recorded from `pnpm dev` with the full image delayed 1.7s.*
+*The box never reflows: the aspect ratio is held from first paint and a 296-byte
+placeholder covers the gap while the 52 kB image arrives. Recorded from `pnpm dev` with
+the full-size request delayed 1.7s.*
 
 ```sh
 npm install react-progressive-picture
